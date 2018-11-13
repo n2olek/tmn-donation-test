@@ -34,8 +34,6 @@ import {
 // //////////////////////////////////////////////////////////////////////////////////////////////////
 
 injectGlobal`
-  /* XXXXX
-  ============================================================ */
   .page-main {
     position: relative;
     z-index: 1;
@@ -47,6 +45,7 @@ injectGlobal`
       top: 0;
       right: 0;
       left: 0;
+      bottom: 0;
       overflow: auto;
       background-color: #FFF;
     }
@@ -60,16 +59,6 @@ injectGlobal`
     transition: transform 0.5s, opacity 0.5s;
     transform: translate3d(0, 0, 0);
 
-    &.fade-appear {
-      opacity: 0;
-      transform: translate3d(100%, 0, 0);
-
-      &.fade-appear-active {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
-    }
-
     &.fade-enter {
       opacity: 0;
       transform: translate3d(100%, 0, 0);
@@ -81,12 +70,12 @@ injectGlobal`
     }
 
     &.fade-exit {
-      opacity: 0;
+      opacity: 1;
       transform: translate3d(0, 0, 0);
 
       &.fade-exit-active {
-        opacity: 1;
-        transform: translate3d(-100%, 0, 0);
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
       }
     }
   }
@@ -99,21 +88,9 @@ injectGlobal`
     transition: transform 0.5s, opacity 0.5s;
     transform: translate3d(0, 0, 0);
 
-    &.fade-appear {
-      opacity: 0;
-      transform: translate3d(-100%, 0, 0);
-      /* transform: translate3d(100%, 0, 0); */
-
-      &.fade-appear-active {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
-    }
-
     &.fade-enter {
       opacity: 0;
-      transform: translate3d(-100%, 0, 0);
-      /* transform: translate3d(100%, 0, 0); */
+      transform: translate3d(100%, 0, 0);
 
       &.fade-enter-active {
         opacity: 1;
@@ -125,9 +102,9 @@ injectGlobal`
       opacity: 1;
       transform: translate3d(0, 0, 0);
 
-      &.fade-exit.fade-exit-active {
+      &.fade-exit-active {
         opacity: 0;
-        transform: translate3d(-100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
       }
     }
   }
