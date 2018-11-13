@@ -47,7 +47,7 @@ export class RouteContainer extends React.Component {
 
     const currentKey = location.pathname.split('/')[2] || 'root'
     //const timeout = { enter: 8000, exit: 8000 }
-    const timeout = { enter: 300, exit: 300 }
+    const timeout = { enter: 5000, exit: 5000 }
 
     console.log(currentKey)
 
