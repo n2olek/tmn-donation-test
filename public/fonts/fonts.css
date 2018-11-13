@@ -1,0 +1,96 @@
+/*
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+// ==================================================================================================
+//
+// Fonts (embed)
+// * Prompt
+//   - Prompt Regular
+//   - Prompt Medium
+//   - Prompt Bold
+// * Thonburi
+//   - Thonburi Regular
+//   - Thonburi Bold
+// * sfprodisplay
+//   - sfprodisplay Bold
+//
+// ==================================================================================================
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+/*
+// Regular
+// ============================================================
+*/
+/* Prompt-Regular */
+@font-face {
+  font-family: 'Prompt-Regular';
+  src: url('../fonts/prompt/prompt-regular.eot');
+  src: url('../fonts/prompt/prompt-regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/prompt/prompt-regular.woff') format('woff'),
+      url('../fonts/prompt/prompt-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Thonburi-Regular */
+@font-face {
+  font-family: 'Thonburi';
+  src: url('../fonts/thonburi/thonburi.eot');
+  src: url('../fonts/thonburi/Thonburi.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/thonburi/Thonburi.woff') format('woff'),
+      url('../fonts/thonburi/Thonburi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+// Medium
+// ============================================================
+*/
+/* Prompt-Medium */
+@font-face {
+  font-family: 'Prompt-Medium';
+  src: url('../fonts/prompt/prompt-medium.eot');
+  src: url('../fonts/prompt/prompt-medium.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/prompt/prompt-medium.woff') format('woff'),
+      url('../fonts/prompt/prompt-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/*
+// Bold
+// ============================================================
+*/
+/* Prompt-Bold */
+@font-face {
+  font-family: 'Prompt-Bold';
+  src: url('../fonts/prompt/prompt-bold.eot');
+  src: url('../fonts/prompt/prompt-bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/prompt/prompt-bold.woff') format('woff'),
+      url('../fonts/prompt/prompt-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Thonburi-Bold */
+@font-face {
+  font-family: 'Thonburi-Bold';
+  src: url('../fonts/thonburi/thonburi-bold.eot');
+  src: url('../fonts/thonburi/thonburi-bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/thonburi/thonburi-bold.woff') format('woff'),
+      url('../fonts/thonburi/thonburi-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* sfprodisplay Bold */
+@font-face {
+  font-family: 'SFproDisplay-Bold';
+  src: url('../fonts/sfprodisplay/sfprodisplay-bold.eot');
+  src: url('../fonts/sfprodisplay/sfprodisplay-bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/sfprodisplay/sfprodisplay-bold.woff') format('woff'),
+      url('../fonts/sfprodisplay/sfprodisplay-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}

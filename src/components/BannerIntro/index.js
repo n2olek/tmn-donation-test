@@ -1,0 +1,1 @@
+export { BannerIntro } from './BannerIntro'
