@@ -34,29 +34,28 @@ import {
 // //////////////////////////////////////////////////////////////////////////////////////////////////
 
 injectGlobal`
+
+
   .page-main {
     position: relative;
     z-index: 1;
 
-    .fade-appear,
-    .fade-exit,
-    .fade-enter {
+    .fade-exit {
       position: fixed;
       top: 0;
       right: 0;
       left: 0;
-      bottom: 0;
       overflow: auto;
       background-color: #FFF;
     }
   }
 
-  .pageSwap {
+  .left {
     overflow: auto;
     box-sizing: border-box;
     height: 100vh;
     background-color: #FFF;
-    transition: transform 0.5s, opacity 0.5s;
+    transition: transform 0.8s, opacity 0.5s;
     transform: translate3d(0, 0, 0);
 
     &.fade-enter {
@@ -70,37 +69,47 @@ injectGlobal`
     }
 
     &.fade-exit {
-      opacity: 1;
+      opacity: 0;
       transform: translate3d(0, 0, 0);
 
       &.fade-exit-active {
-        opacity: 0;
-        transform: translate3d(100%, 0, 0);
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
       }
     }
   }
 
-  .reversePageSwap {
+  .right {
     overflow: auto;
     box-sizing: border-box;
     height: 100vh;
     background-color: #fff;
-    transition: transform 0.5s, opacity 0.5s;
+    transition: transform 0.5s, opacity 0s;
     transform: translate3d(0, 0, 0);
 
-    &.fade-enter {
+    /* &.fade-appear {
       opacity: 0;
       transform: translate3d(100%, 0, 0);
 
-      &.fade-enter-active {
+      &.fade-appear-active {
         opacity: 1;
         transform: translate3d(0, 0, 0);
+      }
+    } */
+
+    &.fade-enter {
+      opacity: 0;
+      transform: translate3d(-100%, 0, 0);
+
+      &.fade-enter-active {
+        opacity: 0;
+        transform: translate3d(-100%, 0, 0);
       }
     }
 
     &.fade-exit {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
+      opacity: 0.5;
+      transform: translate3d(100%, 0, 0);
 
       &.fade-exit-active {
         opacity: 0;
@@ -108,4 +117,6 @@ injectGlobal`
       }
     }
   }
+
+
 `;
