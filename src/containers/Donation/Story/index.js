@@ -11,13 +11,29 @@ import {
 } from 'components'
 import {
   LOGOS,
-  CONTENTS
+  CONTENTS,
+  ICONS
 } from 'themes'
 
 export class StoryContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack () {
+    this.props.history.goBack();
+  }
+
   render() {
     return (
       <React.Fragment>
+        <Button icon
+          srcIcon={ICONS['icon-close.svg']}
+          ui='close'
+          uiFor='special'
+          onClick={this.goBack}
+        />
         <AppBody className='story'>
           <BannerIntro>
             <img src={CONTENTS['top-banner.jpg']} alt=""/>

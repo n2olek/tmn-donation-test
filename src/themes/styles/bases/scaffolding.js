@@ -93,6 +93,14 @@ injectGlobal`
 
   input {
     outline: none;
+
+    /* Remove First */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* remove the shadow within the text input field on iOS */
+    background-clip: padding-box;
   }
 
   picture {

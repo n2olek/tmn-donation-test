@@ -20,10 +20,8 @@ export const SearchWrapper = styled.div`
   padding: 0 16px;
   margin-bottom: 16px;
 
-
   input {
-	  padding: 6px 21px 6px 36px ;
-    padding-left: 38px;
+	  padding: 6px 36px 6px 16px;
     outline: none;
     width: 100%;
     border: 1px solid ${VARIABLES.COLORS.GRAY};
@@ -43,6 +41,10 @@ export const SearchWrapper = styled.div`
     position: absolute;
     left: 8px;
     top: 4px;
+
+    + input {
+      padding-left: 38px;
+    }
   }
 
   .button-close {

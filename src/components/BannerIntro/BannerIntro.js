@@ -5,16 +5,35 @@ import {
 } from './styled'
 import Swiper from 'react-id-swiper';
 
-/**
- * Search description
- * A Search provides a short summary of content
- */
+class BannerIntroItem extends React.PureComponent {
+  render () {
+    const {
+      className,
+      children,
+      ui,
+      uiFor
+    } = this.props
+
+    // props for css classes
+    const uiClasses = ClassNames(ui)
+    const uiForClasses = ClassNames(uiFor)
+    const classes = ClassNames(
+      'banner-item',
+      { [`is-ui-${uiClasses}`]: uiClasses },
+      { [`is-ui-for-${uiForClasses}`]: uiForClasses },
+      className
+    )
+
+    return (
+      <div className={classes}>
+        {children}
+      </div>
+    )
+  }
+}
 
 export class BannerIntro extends React.PureComponent {
-  static defaultProps = {
-    //srcIcon: require('./images/icon-example.svg')
-    //srcIcon: false
-  }
+  static Item       =   BannerIntroItem
 
   render () {
     const {
@@ -23,7 +42,7 @@ export class BannerIntro extends React.PureComponent {
       ui,
       uiFor,
       srcProfile,
-      hasSlide
+      hasSlide,
     } = this.props
 
     // props for css classes
@@ -45,9 +64,15 @@ export class BannerIntro extends React.PureComponent {
       //   delay: 5000,
       //   disableOnInteraction: false
       // },
+      // on: {
+      //   slideChange: () => {
+      //     console.log('Slide change')
+      //   }
+      // },
+
       pagination: {
         el: '.swiper-pagination',
-        clickable: true
+        clickable: true,
       },
     }
 
@@ -58,13 +83,13 @@ export class BannerIntro extends React.PureComponent {
         <div className='banner-container'>
           {
             hasSlide?
-            <div className='banner-item'>
-              <Swiper {...params}>
+            <div className='banner-items'>
+              <Swiper {...params} >
                 {children}
               </Swiper>
             </div>
             :
-            <div className='banner-item'>
+            <div className='banner-items'>
               {children}
             </div>
           }

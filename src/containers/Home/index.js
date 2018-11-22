@@ -7,7 +7,8 @@ import {
   BannerIntro,
   List,
   Image,
-  Card
+  Card,
+  Video
 } from 'components'
 import {
   ICONS,
@@ -18,38 +19,106 @@ import {
   ROUTE_PATH,
   redirect
 } from 'helpers'
+import Swiper from 'react-id-swiper';
 
 export class HomeContainer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      url: 'https://www.youtube.com/embed/Ftqj4_AsKUI',
+      //url: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
+      playing: false,
+      hideButton: true,
+      showButton: false
+    };
+  }
+
+  handleOnClick = () => {
+    this.showVideo();
+  }
+
+  handleOnPause = () => {
+    this.pauseVideo();
+  }
+
+  showVideo = () => {
+    this.setState({
+      playing: !this.state.playing,
+      hideButton: !this.state.hideButton
+    })
+    //console.log('showVideo')
+  }
+
+  pauseVideo = () => {
+    this.setState({
+      playing: !this.state.playing,
+      hideButton: !this.state.hideButton
+    })
+
+    console.log('pauseVideo')
+  }
+
+  slideChange = () => {
+    //console.log('Slide change')
+  }
+
   render() {
+    const {
+      hideButton,
+      playing,
+      url
+    } = this.state;
+
+    const params = {
+      centeredSlides: true,
+      on: {
+        slideChange: () => {
+          this.setState({
+            playing: this.state.playing,
+            //hideButton: !this.state.hideButton
+          })
+
+          console.log('slided')
+        }
+      },
+
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    }
+
     return (
       <React.Fragment>
         <AppBody className='main'>
           <BannerIntro
-            hasSlide
+            //hasSlide
           >
-            <div>
-              <img src={CONTENTS['image-card-2.jpg']} alt=""/>
-              <div className='banner-contents'>
-                <div className='banner-content'>
-                  <h3>ก้าวคนละก้าว</h3>
-                  <p>ร่วมส่งกำลังใจให้พี่ตูน เพื่อ 11 โรงพยาบาล ทั่วประเทศ</p>
+            <Swiper {...params}>
+              <BannerIntro.Item>
+                <Video
+                  hideButton={hideButton}
+                  playing={playing}
+                  url={url}
+                  onClick={this.handleOnClick}
+                  onPause={this.handleOnPause}
+                />
+              </BannerIntro.Item>
+              <BannerIntro.Item>
+                <img src={CONTENTS['image-card-2.jpg']} alt=""/>
+                <div className='banner-contents'>
+                  <div className='banner-content'>
+                    <h3>ก้าวคนละก้าว</h3>
+                    <p>ร่วมส่งกำลังใจให้พี่ตูน เพื่อ 11 โรงพยาบาล ทั่วประเทศ</p>
+                  </div>
                 </div>
-              </div>
                 <div className='banner-play'>
                   <img src={ICONS['icon-play.svg']} alt=""/>
                 </div>
-            </div>
-            <div>
-              <iframe  title=' ' width="560" height="315" src="https://www.youtube.com/embed/Ftqj4_AsKUI" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-            </div>
-            <div>
-              <video className='video-cover' controls>
-                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div>
-              <img src={CONTENTS['banner-intro-2.jpg']} alt=""/>
-            </div>
+              </BannerIntro.Item>
+            </Swiper>
+
           </BannerIntro>
 
           <Header>
@@ -63,6 +132,8 @@ export class HomeContainer extends React.Component {
           </Header>
 
           <Search
+            icon
+            ui='ddd'
             type='text'
             name='focus'
             placeholder='ค้นหามูลนิธิ / องค์กรการกุศลที่ต้องการบริจาค ...'
@@ -77,11 +148,10 @@ export class HomeContainer extends React.Component {
           <Card>
             <Card.Item
               srcImage= { CONTENTS['banner-card-1.jpg'] }
+              onLink={ROUTE_PATH.STORY.LINK}
             >
               <Card.Content>
-                <Card.Avatar
-                  onLink={ROUTE_PATH.STORY.LINK}
-                >
+                <Card.Avatar>
                   <Image avatar
                     srcImage= { LOGOS['logo-1.jpg'] }
                     // onClick={() => {
@@ -97,11 +167,10 @@ export class HomeContainer extends React.Component {
 
             <Card.Item
               srcImage= { CONTENTS['banner-card-2.jpg'] }
+              onLink={ROUTE_PATH.STORYDONATION.LINK}
             >
               <Card.Content>
-                <Card.Avatar
-                  onLink={ROUTE_PATH.STORYDONATION.LINK}
-                  >
+                <Card.Avatar>
                   <Image avatar
                     srcImage= { LOGOS['logo-2.jpg'] }
                   />

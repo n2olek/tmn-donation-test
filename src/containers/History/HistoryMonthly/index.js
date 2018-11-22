@@ -2,8 +2,7 @@ import React from 'react'
 import {
   List,
   AppBody,
-  Image,
-  Button
+  Image
 } from 'components'
 import {
   LOGOS
@@ -14,25 +13,10 @@ import {
 } from 'helpers'
 
 export class HistoryMonthlyContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.goBack = this.goBack.bind(this); // i think you are missing this
-  }
-
-  goBack(){
-    this.props.history.goBack();
-  }
-
   render() {
     return (
       <React.Fragment>
         <AppBody className='view-history-monthly'>
-        <Button fluid primary size='large'
-          onClick={this.goBack}
-        >
-          Go Back
-        </Button>
-
         <List>
             <List.Item>
               <Image list

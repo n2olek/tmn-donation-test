@@ -39,8 +39,7 @@ class CardAvatar extends React.PureComponent {
       className,
       children,
       ui,
-      uiFor,
-      onLink
+      uiFor
     } = this.props
 
     // props for css classes
@@ -56,9 +55,7 @@ class CardAvatar extends React.PureComponent {
     //console.log(onLink);
     return (
       <div className={classes}>
-        <Link to={onLink ? onLink: ''}>
-          {children}
-        </Link>
+        {children}
       </div>
     )
   }
@@ -72,7 +69,8 @@ class CardItem extends React.PureComponent {
       children,
       ui,
       uiFor,
-      srcImage
+      srcImage,
+      onLink
     } = this.props
 
     // props for css classes
@@ -90,17 +88,18 @@ class CardItem extends React.PureComponent {
     }
 
     return (
-      <div className={classes} style={divStyle}>
-        {/* <div className='card-item'>
-          <img src={srcImage} alt="img" className='img'/>
+
+        <Link to={onLink ? onLink: ''} className={classes} style={divStyle}>
+          {/* <div className='card-item'>
+            <img src={srcImage} alt="img" className='img'/>
+            {children}
+          </div> */}
           {children}
-        </div> */}
-        {children}
-        <div className='card-ribbin'></div>
-        <div className='card-backdrop'>
-          <div className='card-filter' style={divStyle}></div>
-        </div>
-      </div>
+          <div className='card-ribbin'></div>
+          <div className='card-backdrop'>
+            <div className='card-filter' style={divStyle}></div>
+          </div>
+        </Link>
     )
   }
 }

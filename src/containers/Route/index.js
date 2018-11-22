@@ -15,8 +15,9 @@ import {
 
   HistoryContainer,
   HistoryMonthlyContainer,
-  HistoryMonthlyEmptyContainer
+  HistoryMonthlyEmptyContainer,
 
+  SearchContainer
 } from 'containers'
 import {
   context
@@ -49,7 +50,8 @@ export class RouteContainer extends React.Component {
     //const timeout = { enter: 8000, exit: 8000 }
     const timeout = { enter: 5000, exit: 5000 }
 
-    console.log(currentKey)
+    // console.log(currentKey)
+    // console.log(currentKey === 'root' ? 'reversePageSwap fade'  : 'pageSwap fade')
 
     return (
       <MainLayoutContainer>
@@ -74,6 +76,8 @@ export class RouteContainer extends React.Component {
               <Route exact path={ROUTE_PATH.HISTORY.LINK} component={HistoryContainer} />
               <Route exact path={ROUTE_PATH.HISTORYMONTHLY.LINK} component={HistoryMonthlyContainer} />
               <Route exact path={ROUTE_PATH.HISTORYMONTHLYEMPTY.LINK} component={HistoryMonthlyEmptyContainer} />
+
+              <Route exact path={ROUTE_PATH.SEARCH.LINK} component={SearchContainer} />
             </Switch>
           </section>
           </CSSTransition>

@@ -144,6 +144,22 @@ export const ButtonWrapper = styled.button`
     background-color: transparent;
     width: 40px;
     height: 40px;
+
+    &.is-ui-close {
+      border: none;
+
+      img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+
+    &.is-ui-for-special {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+    }
   }
 
   /* Media queries

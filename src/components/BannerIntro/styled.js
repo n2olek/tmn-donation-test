@@ -32,7 +32,7 @@ export const BannerIntroWrapper = styled.div`
     padding-bottom: 56%;
   }
 
-  iframe, .banner-item, img, video {
+  iframe, .banner-items, img, video {
     position: absolute;
     z-index: 1;
     top: 0;

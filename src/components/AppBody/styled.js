@@ -19,6 +19,7 @@ export const AppBodyWrapper = styled.div`
   ------------------------------- */
   position: relative;
   height: 100vh;
+  overflow: auto;
   /* padding-top: 16px; */
 
   /* Child element styles

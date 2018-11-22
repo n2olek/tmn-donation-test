@@ -7,8 +7,7 @@ import {
 import {
   Header,
   AppBody,
-  AppreciationCard,
-  Button
+  AppreciationCard
 } from 'components'
 import {
   LOGOS,
@@ -17,24 +16,10 @@ import {
 
 
 export class HistoryContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.goBack = this.goBack.bind(this); // i think you are missing this
-  }
-
-  goBack(){
-    this.props.history.goBack();
-  }
-
   render() {
     return (
       <React.Fragment>
         <AppBody className='view-history'>
-          <Button fluid primary size='large'
-            onClick={this.goBack}
-          >
-            Go Back
-          </Button>
           <div className='donated-block'>
             <div className='donated-description'>
               คุณบริจาคไปแล้วทั้งหมด

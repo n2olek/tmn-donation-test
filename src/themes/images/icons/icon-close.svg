@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 14.1">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        opacity: 0.35;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #333;
+      }
+    </style>
+  </defs>
+  <g id="icon-close" transform="translate(-1113 -221)">
+    <path id="icon-close-2" data-name="icon-close" class="cls-1" d="M12.7.3h0a.967.967,0,0,0-1.4,0L6.5,5.1,1.7.3A.967.967,0,0,0,.3.3a.967.967,0,0,0,0,1.4L5.1,6.5,2.4,9.3.3,11.4a.967.967,0,0,0,0,1.4.967.967,0,0,0,1.4,0L6.5,8l4.8,4.8a.99.99,0,1,0,1.4-1.4L7.9,6.5l4.8-4.8A.967.967,0,0,0,12.7.3Z" transform="translate(1113 222)"/>
+    <path id="icon-close-3" data-name="icon-close" class="cls-2" d="M12.7.3h0a.967.967,0,0,0-1.4,0L6.5,5.1,1.7.3A.967.967,0,0,0,.3.3a.967.967,0,0,0,0,1.4L5.1,6.5,2.4,9.3.3,11.4a.967.967,0,0,0,0,1.4.967.967,0,0,0,1.4,0L6.5,8l4.8,4.8a.99.99,0,1,0,1.4-1.4L7.9,6.5l4.8-4.8A.967.967,0,0,0,12.7.3Z" transform="translate(1113 221)"/>
+  </g>
+</svg>

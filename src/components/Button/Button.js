@@ -44,7 +44,8 @@ export class Button extends React.PureComponent {
     */
     ui: PropTypes.oneOf([
       'error',
-      'success'
+      'success',
+      'icon-close'
     ]),
 
     /**

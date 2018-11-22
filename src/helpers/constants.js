@@ -47,5 +47,10 @@ export const ROUTE_PATH = {
   HISTORYMONTHLYEMPTY: {
     TEXT: 'History',
     LINK: '/history/monthlyempty'
+  },
+
+  SEARCH: {
+    TEXT: 'Search',
+    LINK: '/Search'
   }
 }

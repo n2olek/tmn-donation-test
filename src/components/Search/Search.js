@@ -20,13 +20,14 @@ export class Search extends React.PureComponent {
       className,
       ui,
       uiFor,
+      icon,
       placeholder,
       name,
       type,
       // value,
-      // onChange,
+      onChange,
       // onPress
-      // onClick
+      onClick
     } = this.props
 
     // props for css classes
@@ -44,24 +45,31 @@ export class Search extends React.PureComponent {
       <SearchWrapper
         className={classes}
         >
-        <form>
-          <div className='search-box'>
-            <img src={require('./images/icon-search.svg')} alt="icon search" className='icon-search'/>
-            <input
-              type={type}
-              placeholder={placeholder}
-              name={name}
-              // value={value}
-              // onChange={onChange}
-              // onPress={onPress}
-            />
-            {/* <button className='button-close' type='reset'
-              onClick={onClick}
-            >
-              <img src={require('./images/icon-close.svg')} alt="icon close" className='icon-close'/>
-            </button> */}
-          </div>
-        </form>
+          <form id={name}>
+            <div className='search-box'>
+              {
+                icon &&
+                <img src={require('./images/icon-search.svg')} alt="icon search" className='icon-search'/>
+              }
+              <input
+                type={type}
+                placeholder={placeholder}
+                name={name}
+                // value={value}
+                onChange={onChange}
+                // onPress={onPress}
+              />
+              {
+                onClick &&
+                <button className='button-close' type='reset'
+                  onClick={onClick}
+                >
+                  <img src={require('./images/icon-close.svg')} alt="icon close" className='icon-close'/>
+                </button>
+              }
+            </div>
+          </form>
+
       </SearchWrapper>
     )
   }

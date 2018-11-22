@@ -37,6 +37,7 @@ injectGlobal`
   .page-main {
     position: relative;
     z-index: 1;
+    overflow: auto;
 
     .fade-appear,
     .fade-exit,

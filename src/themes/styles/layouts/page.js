@@ -130,6 +130,14 @@ injectGlobal`
     }
   }
 
+  .search-filter {
+    margin-top: 16px;
+
+    .search {
+      margin-bottom: 32px;
+    }
+  }
+
   @media only screen and (min-width: 640px) {
     .banner-contents {
       h3 {
