@@ -7,8 +7,7 @@ import {
   BannerIntro,
   List,
   Image,
-  Card,
-  Video
+  Card
 } from 'components'
 import {
   ICONS,
@@ -19,106 +18,114 @@ import {
   ROUTE_PATH,
   redirect
 } from 'helpers'
-import Swiper from 'react-id-swiper';
 
 export class HomeContainer extends React.Component {
   constructor(props) {
-    super(props);
-
+    super(props)
     this.state = {
-      url: 'https://www.youtube.com/embed/Ftqj4_AsKUI',
-      //url: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
-      playing: false,
-      hideButton: true,
-      showButton: false
-    };
+      isHighlightMediaPlay: [false, false, false, false]
+    }
   }
 
-  handleOnClick = () => {
-    this.showVideo();
-  }
+  media = {
+    onClickMediaPlay: (index) => {
+      const {
+        isHighlightMediaPlay
+      } = this.state
+      isHighlightMediaPlay[index] = true
 
-  handleOnPause = () => {
-    this.pauseVideo();
-  }
+      this.setState({
+        isHighlightMediaPlay
+      })
+    },
 
-  showVideo = () => {
-    this.setState({
-      playing: !this.state.playing,
-      hideButton: !this.state.hideButton
-    })
-    //console.log('showVideo')
-  }
+    onClickMediaPause: (index) => {
+      const {
+        isHighlightMediaPlay
+      } = this.state
+      isHighlightMediaPlay[index] = false
 
-  pauseVideo = () => {
-    this.setState({
-      playing: !this.state.playing,
-      hideButton: !this.state.hideButton
-    })
-
-    console.log('pauseVideo')
-  }
-
-  slideChange = () => {
-    //console.log('Slide change')
+      this.setState({
+        isHighlightMediaPlay
+      })
+    }
   }
 
   render() {
     const {
-      hideButton,
-      playing,
-      url
-    } = this.state;
+      isHighlightMediaPlay
+    } = this.state
 
-    const params = {
-      centeredSlides: true,
-      on: {
-        slideChange: () => {
-          this.setState({
-            playing: this.state.playing,
-            //hideButton: !this.state.hideButton
-          })
-
-          console.log('slided')
-        }
+    const highlightCarousel = {
+      autoplay: {
+        delay: 5000000
       },
-
       pagination: {
         el: '.swiper-pagination',
-        clickable: true,
+        clickable: true
       },
+      // Ref: Handling Swiper API events
+      // https://github.com/kidjp85/react-id-swiper/issues/113
+      on: {
+        'slideChange': () => {
+          this.setState({
+            isHighlightMediaPlay: [false, false, false, false]
+          })
+        }
+      }
     }
 
     return (
       <React.Fragment>
         <AppBody className='main'>
           <BannerIntro
-            //hasSlide
+            isCarousel
+            carouselOptions={highlightCarousel}
           >
-            <Swiper {...params}>
-              <BannerIntro.Item>
-                <Video
-                  hideButton={hideButton}
-                  playing={playing}
-                  url={url}
-                  onClick={this.handleOnClick}
-                  onPause={this.handleOnPause}
-                />
-              </BannerIntro.Item>
-              <BannerIntro.Item>
-                <img src={CONTENTS['image-card-2.jpg']} alt=""/>
-                <div className='banner-contents'>
-                  <div className='banner-content'>
-                    <h3>ก้าวคนละก้าว</h3>
-                    <p>ร่วมส่งกำลังใจให้พี่ตูน เพื่อ 11 โรงพยาบาล ทั่วประเทศ</p>
-                  </div>
+            <div>
+              <BannerIntro.Media
+                src='https://www.youtube.com/watch?v=oTH0s0iRA0g'
+                isMediaPlay={isHighlightMediaPlay[0]}
+                onClickMediaPlay={() => {this.media.onClickMediaPlay(0)}}
+                onClickMediaPause={() => {this.media.onClickMediaPause(0)}}
+              />
+            </div>
+            <div>
+              <BannerIntro.Media
+                src='http://mazwai.com/system/posts/videos/000/000/171/original/benjamin_wu--raccoon_come_and_go.mp4'
+                isMediaPlay={isHighlightMediaPlay[1]}
+                onClickMediaPlay={() => {this.media.onClickMediaPlay(1)}}
+                onClickMediaPause={() => {this.media.onClickMediaPause(1)}}
+              />
+            </div>
+            {/* <div>
+              <BannerIntro.Media
+                src='https://www.youtube.com/watch?v=6jM9TIblQ3Q'
+                isMediaPlay={isHighlightMediaPlay_2}
+                onClickMediaPlay={this.media.onClickMediaPlay_2}
+                onClickMediaPause={this.media.onClickMediaPause}
+              />
+            </div>
+            <div>
+              <BannerIntro.Media
+                src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4'
+                isMediaPlay={isHighlightMediaPlay_3}
+                onClickMediaPlay={this.media.onClickMediaPlay_3}
+                onClickMediaPause={this.media.onClickMediaPause}
+              />
+            </div> */}
+            <div>
+              <img src={CONTENTS['image-card-2.jpg']} alt=""/>
+              <div className='banner-contents'>
+                <div className='banner-content'>
+                  <h3>ก้าวคนละก้าว</h3>
+                  <p>ร่วมส่งกำลังใจให้พี่ตูน เพื่อ 11 โรงพยาบาล ทั่วประเทศ</p>
                 </div>
+              </div>
                 <div className='banner-play'>
                   <img src={ICONS['icon-play.svg']} alt=""/>
                 </div>
-              </BannerIntro.Item>
-            </Swiper>
-
+            </div>
           </BannerIntro>
 
           <Header>
@@ -147,16 +154,16 @@ export class HomeContainer extends React.Component {
           </Header>
           <Card>
             <Card.Item
-              srcImage= { CONTENTS['banner-card-1.jpg'] }
+              srcImage={CONTENTS['banner-card-1.jpg']}
               onLink={ROUTE_PATH.STORY.LINK}
             >
               <Card.Content>
                 <Card.Avatar>
                   <Image avatar
-                    srcImage= { LOGOS['logo-1.jpg'] }
-                    // onClick={() => {
-                    //   redirect(ROUTE_PATH.STORY.LINK)
-                    // }}
+                    srcImage={LOGOS['logo-1.jpg']}
+                  // onClick={() => {
+                  //   redirect(ROUTE_PATH.STORY.LINK)
+                  // }}
                   />
                 </Card.Avatar>
                 <Card.Header>
@@ -166,13 +173,13 @@ export class HomeContainer extends React.Component {
             </Card.Item>
 
             <Card.Item
-              srcImage= { CONTENTS['banner-card-2.jpg'] }
+              srcImage={CONTENTS['banner-card-2.jpg']}
               onLink={ROUTE_PATH.STORYDONATION.LINK}
             >
               <Card.Content>
                 <Card.Avatar>
                   <Image avatar
-                    srcImage= { LOGOS['logo-2.jpg'] }
+                    srcImage={LOGOS['logo-2.jpg']}
                   />
                 </Card.Avatar>
                 <Card.Header>
@@ -182,12 +189,12 @@ export class HomeContainer extends React.Component {
             </Card.Item>
 
             <Card.Item
-              srcImage= { CONTENTS['banner-card-1.jpg'] }
+              srcImage={CONTENTS['banner-card-1.jpg']}
             >
               <Card.Content>
                 <Card.Avatar>
                   <Image avatar
-                    srcImage= { LOGOS['logo-3.jpg'] }
+                    srcImage={LOGOS['logo-3.jpg']}
                   />
                 </Card.Avatar>
                 <Card.Header>
@@ -197,12 +204,12 @@ export class HomeContainer extends React.Component {
             </Card.Item>
 
             <Card.Item
-              srcImage= { CONTENTS['banner-card-2.jpg'] }
+              srcImage={CONTENTS['banner-card-2.jpg']}
             >
               <Card.Content>
                 <Card.Avatar>
                   <Image avatar
-                    srcImage= { LOGOS['logo-4.jpg'] }
+                    srcImage={LOGOS['logo-4.jpg']}
                   />
                 </Card.Avatar>
                 <Card.Header>
@@ -233,11 +240,11 @@ export class HomeContainer extends React.Component {
           </Header>
           <List>
             <List.Item
-              toLink = {ROUTE_PATH.STORY.LINK}
+              toLink={ROUTE_PATH.STORY.LINK}
             >
               <Image list
                 srcImage={LOGOS['logo-3.jpg']}
-            />
+              />
               <List.Content
                 onClick={() => {
                   //redirect(ROUTE_PATH.STORY.LINK)
@@ -248,7 +255,7 @@ export class HomeContainer extends React.Component {
               </List.Content>
             </List.Item>
             <List.Item
-              toLink = {ROUTE_PATH.STORYDONATION.LINK}
+              toLink={ROUTE_PATH.STORYDONATION.LINK}
             >
               <Image list
                 srcImage={LOGOS['logo-2.jpg']}

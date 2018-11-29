@@ -26,13 +26,14 @@ export const BannerIntroWrapper = styled.div`
 
   /* Child element styles
   ------------------------------- */
-  .banner-container, .swiper-slide {
+  .banner-container,
+  .banner-container .swiper-slide {
     position: relative;
     overflow: hidden;
     padding-bottom: 56%;
   }
 
-  iframe, .banner-items, img, video {
+  iframe, .banner-item, img, video {
     position: absolute;
     z-index: 1;
     top: 0;
@@ -74,9 +75,52 @@ export const BannerIntroWrapper = styled.div`
     }
   }
 
+  .banner-intro-media {
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 56%;
+  }
+
+  .banner-intro-media-type div iframe,
+  .banner-intro-media-type video {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .banner-intro-media-type {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100% !important; /* Overwrite js inline style from react-player */
+    height: 100% !important; /* Overwrite js inline style from react-player */
+
+    div {
+      iframe {
+      }
+    }
+  }
+
+  .banner-intro-media-control-button {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 7.5vw;
+    left: 0;
+  }
+
   /* Modifiers
   ------------------------------- */
   .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    left: 50%;
+    width: 100px; /* fix width for avoid overlap video control bar */
+    margin-left: -50px;
     padding-bottom: 2px;
   }
 

@@ -1,24 +1,33 @@
 import React from 'react'
+import ReactPlayer from 'react-player'
 import ClassNames from 'classnames'
 import {
   BannerIntroWrapper
 } from './styled'
 import Swiper from 'react-id-swiper';
 
-class BannerIntroItem extends React.PureComponent {
-  render () {
+class BannerIntroMedia extends React.PureComponent {
+  static defaultProps = {
+    controls: true
+  }
+
+  render() {
     const {
       className,
-      children,
       ui,
-      uiFor
+      uiFor,
+      src,
+      controls,
+      isMediaPlay,
+      onClickMediaPause,
+      onClickMediaPlay
     } = this.props
 
     // props for css classes
     const uiClasses = ClassNames(ui)
     const uiForClasses = ClassNames(uiFor)
     const classes = ClassNames(
-      'banner-item',
+      'banner-intro-media',
       { [`is-ui-${uiClasses}`]: uiClasses },
       { [`is-ui-for-${uiForClasses}`]: uiForClasses },
       className
@@ -26,16 +35,47 @@ class BannerIntroItem extends React.PureComponent {
 
     return (
       <div className={classes}>
-        {children}
+        <ReactPlayer className='banner-intro-media-type'
+          url={src}
+          controls={controls}
+          playing={isMediaPlay}
+        />
+        {
+          isMediaPlay ?
+            <div className='banner-intro-media-control-button'
+              onClick={onClickMediaPause}
+            />
+            :
+            <div className='banner-intro-media-control-button'
+              onClick={onClickMediaPlay}
+            />
+        }
       </div>
     )
   }
 }
 
-export class BannerIntro extends React.PureComponent {
-  static Item       =   BannerIntroItem
+/**
+ * BannerIntro description
+ * ...
+ */
 
-  render () {
+export class BannerIntro extends React.PureComponent {
+  static defaultProps = {
+    carouselOptions: {
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      }
+    }
+  }
+
+  static Media = BannerIntroMedia
+
+  render() {
     const {
       children,
       className,
@@ -43,64 +83,57 @@ export class BannerIntro extends React.PureComponent {
       uiFor,
       srcProfile,
       hasSlide,
+      isCarousel,
+      carouselOptions
     } = this.props
 
     // props for css classes
     const uiClasses = ClassNames(ui)
     const uiForClasses = ClassNames(uiFor)
-
     const classes = ClassNames(
       'banner-intro',
       { [`is-ui-${uiClasses}`]: uiClasses },
       { [`is-ui-for-${uiForClasses}`]: uiForClasses },
-      { [`is-ui-for-profile`]: srcProfile},
+      { [`is-ui-for-profile`]: srcProfile },
       className
     )
-
-    const params = {
-      centeredSlides: true,
-      // effect: 'fade',
-      // autoplay: {
-      //   delay: 5000,
-      //   disableOnInteraction: false
-      // },
-      // on: {
-      //   slideChange: () => {
-      //     console.log('Slide change')
-      //   }
-      // },
-
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    }
 
     return (
       <BannerIntroWrapper
         className={classes}
-        >
-        <div className='banner-container'>
-          {
-            hasSlide?
-            <div className='banner-items'>
-              <Swiper {...params} >
-                {children}
-              </Swiper>
-            </div>
-            :
-            <div className='banner-items'>
+      >
+        {
+          isCarousel ?
+            <Swiper
+              {...carouselOptions}
+            >
               {children}
+            </Swiper>
+            :
+            <div className='banner-container'>
+              {
+                hasSlide ?
+                  <div className='banner-item'>
+                    <Swiper
+                      {...carouselOptions}
+                    >
+                      {children}
+                    </Swiper>
+                  </div>
+                  :
+                  <div className='banner-item'>
+                    {children}
+                  </div>
+              }
             </div>
-          }
-        </div>
+        }
         {
           srcProfile &&
-          <div className='banner-profile'>
-            <img className='banner-img' alt='img'
-              src={srcProfile}
-            />
-          </div>
+            <div className='banner-profile'>
+              <img className='banner-img' alt='img'
+                src={srcProfile}
+              />
+            </div>
         }
       </BannerIntroWrapper>
     )
