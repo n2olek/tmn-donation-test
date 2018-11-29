@@ -23,42 +23,59 @@ export class HomeContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isHighlightMediaPlay: [false, false, false, false]
+      isHighlightMediaPlay_1: false,
+      isHighlightMediaPlay_2: false,
+      isHighlightMediaPlay_3: false,
+      isHighlightMediaPlay_4: false
     }
   }
 
   media = {
-    onClickMediaPlay: (index) => {
-      const {
-        isHighlightMediaPlay
-      } = this.state
-      isHighlightMediaPlay[index] = true
-
+    onClickMediaPlay_1: () => {
       this.setState({
-        isHighlightMediaPlay
+        isHighlightMediaPlay_1: true
       })
     },
 
-    onClickMediaPause: (index) => {
-      const {
-        isHighlightMediaPlay
-      } = this.state
-      isHighlightMediaPlay[index] = false
-
+    onClickMediaPlay_2: () => {
       this.setState({
-        isHighlightMediaPlay
+        isHighlightMediaPlay_2: true
+      })
+    },
+
+    onClickMediaPlay_3: () => {
+      this.setState({
+        isHighlightMediaPlay_3: true
+      })
+    },
+
+    onClickMediaPlay_4: () => {
+      this.setState({
+        isHighlightMediaPlay_4: true
+      })
+    },
+
+    onClickMediaPause: () => {
+      this.setState({
+        isHighlightMediaPlay_1: false,
+        isHighlightMediaPlay_2: false,
+        isHighlightMediaPlay_3: false,
+        isHighlightMediaPlay_4: false
       })
     }
   }
 
   render() {
     const {
-      isHighlightMediaPlay
+      isHighlightMediaPlay_1,
+      isHighlightMediaPlay_2,
+      isHighlightMediaPlay_3,
+      isHighlightMediaPlay_4
     } = this.state
 
     const highlightCarousel = {
       autoplay: {
-        delay: 5000000
+        delay: 5000
       },
       pagination: {
         el: '.swiper-pagination',
@@ -69,7 +86,10 @@ export class HomeContainer extends React.Component {
       on: {
         'slideChange': () => {
           this.setState({
-            isHighlightMediaPlay: [false, false, false, false]
+            isHighlightMediaPlay_1: false,
+            isHighlightMediaPlay_2: false,
+            isHighlightMediaPlay_3: false,
+            isHighlightMediaPlay_4: false
           })
         }
       }
@@ -85,20 +105,20 @@ export class HomeContainer extends React.Component {
             <div>
               <BannerIntro.Media
                 src='https://www.youtube.com/watch?v=oTH0s0iRA0g'
-                isMediaPlay={isHighlightMediaPlay[0]}
-                onClickMediaPlay={() => {this.media.onClickMediaPlay(0)}}
-                onClickMediaPause={() => {this.media.onClickMediaPause(0)}}
+                isMediaPlay={isHighlightMediaPlay_1}
+                onClickMediaPlay={this.media.onClickMediaPlay_1}
+                onClickMediaPause={this.media.onClickMediaPause}
               />
             </div>
             <div>
               <BannerIntro.Media
                 src='http://mazwai.com/system/posts/videos/000/000/171/original/benjamin_wu--raccoon_come_and_go.mp4'
-                isMediaPlay={isHighlightMediaPlay[1]}
-                onClickMediaPlay={() => {this.media.onClickMediaPlay(1)}}
-                onClickMediaPause={() => {this.media.onClickMediaPause(1)}}
+                isMediaPlay={isHighlightMediaPlay_4}
+                onClickMediaPlay={this.media.onClickMediaPlay_4}
+                onClickMediaPause={this.media.onClickMediaPause}
               />
             </div>
-            {/* <div>
+            <div>
               <BannerIntro.Media
                 src='https://www.youtube.com/watch?v=6jM9TIblQ3Q'
                 isMediaPlay={isHighlightMediaPlay_2}
@@ -113,18 +133,6 @@ export class HomeContainer extends React.Component {
                 onClickMediaPlay={this.media.onClickMediaPlay_3}
                 onClickMediaPause={this.media.onClickMediaPause}
               />
-            </div> */}
-            <div>
-              <img src={CONTENTS['image-card-2.jpg']} alt=""/>
-              <div className='banner-contents'>
-                <div className='banner-content'>
-                  <h3>ก้าวคนละก้าว</h3>
-                  <p>ร่วมส่งกำลังใจให้พี่ตูน เพื่อ 11 โรงพยาบาล ทั่วประเทศ</p>
-                </div>
-              </div>
-                <div className='banner-play'>
-                  <img src={ICONS['icon-play.svg']} alt=""/>
-                </div>
             </div>
           </BannerIntro>
 
